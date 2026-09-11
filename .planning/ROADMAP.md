@@ -59,10 +59,11 @@ Plans:
   2. `bge-m3` 로컬 임베딩(MPS)으로 문서를 임베딩한 실행 결과(벡터 차원 등)를 볼 수 있다 (RAG-02)
   3. Chroma에 저장한 뒤 한국어 질의로 검색한 실제 결과 문서들이 출력에 나타난다 (RAG-03)
   4. 검색 결과를 프롬프트에 주입한 LCEL RAG 체인이 실제 한국어 답변을 생성한 출력을 보여준다 (RAG-04)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md — RAG 의존성 + shared/config.py `get_embeddings()`(bge-m3, 지연 import) + 원작 한국어 샘플 문서 3개 + 3부 1장(문서 로딩·분할) + 2장(임베딩·Chroma 검색), LLM 없는 캡처 결정성 확인, 로컬 커밋만 (Wave 1)
+- [ ] 03-02-PLAN.md — 3부 3장(LCEL RAG 체인·문서에 없는 질문) + 소개·2부 2장 포인터 + 재현성(구조적 차이 시 1회 재실행 후 중단)·회귀·형식·마스킹·누출·위생 게이트, push, Actions, 라이브 검증 (Wave 2)
 
 ### Phase 4: LangGraph + LangSmith
 **Goal**: 독자는 도구 루프를 상태 그래프로 재구성하고, 체크포인터로 대화를 여러 턴 이어가며, LangSmith 트레이스로 에이전트 내부 동작을 들여다볼 수 있다.
@@ -105,6 +106,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Book Infra + Basics | 4/4 | Complete | 2026-09-11 |
 | 2. Tool Calling | 1/1 | Complete | 2026-09-11 |
-| 3. RAG | 0/TBD | Not started | - |
+| 3. RAG | 0/2 | Planned | - |
 | 4. LangGraph + LangSmith | 0/TBD | Not started | - |
 | 5. Capstone + Appendix | 0/TBD | Not started | - |
