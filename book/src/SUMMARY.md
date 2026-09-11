@@ -10,6 +10,10 @@
 - [LCEL로 체인 만들기](ch01_basics/04_lcel_runnables.md)
 - [구조화 출력](ch01_basics/05_structured_output.md)
 
+# 2부 도구 호출
+
+- [도구 정의와 bind_tools](ch02_tools/01_define_tools.md)
+
 # 부록
 
 - [부록 안내](appendix/about.md)
