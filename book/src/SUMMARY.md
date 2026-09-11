@@ -13,6 +13,7 @@
 # 2부 도구 호출
 
 - [도구 정의와 bind_tools](ch02_tools/01_define_tools.md)
+- [수동 도구 실행 루프](ch02_tools/02_tool_loop.md)
 
 # 부록
 

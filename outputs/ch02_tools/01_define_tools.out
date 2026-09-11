@@ -1,5 +1,5 @@
-# source-sha256: 3105345266916e3a7f17f73309a6d4fb6b34c29afd9cfd1561a01be3a437f1c0
-=== 1. @tool이 만든 도구 ===
+# source-sha256: f75270aa6b5e16a44cc83f60280eb35f274788f2a872b308430fc2b42a9cac56
+=== 1. tool 데코레이터가 만든 도구 ===
 타입: StructuredTool
 - add: 두 정수를 더한다.
   args: {"a": {"title": "A", "type": "integer"}, "b": {"title": "B", "type": "integer"}}

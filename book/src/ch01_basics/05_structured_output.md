@@ -57,3 +57,4 @@ uv run python ch01_basics/05_structured_output.py
 - `get_structured_model(Schema)`는 응답을 딕셔너리가 아니라 `Schema`의 실제 인스턴스로 돌려준다 — 필드는 속성으로 접근하고, 타입(정수, 리스트 등)도 그대로 지켜진다.
 - 이 로컬 서버는 스펙큘레이티브 디코딩을 쓰기 때문에 `with_structured_output`의 기본 방식(스키마 제약 디코딩)이 HTTP 500으로 실패한다.
 - `method="function_calling", strict=False`는 스키마 제약 디코딩을 피해가므로 이 서버에서 안전하게 동작하며, `shared/config.py`에 한 번만 설정해 모든 장이 공유한다.
+- `function_calling` 방식이 기대는 '도구 호출' 자체는 다음 [2부 도구 호출](../ch02_tools/01_define_tools.md)에서 직접 다룬다.

@@ -1,4 +1,4 @@
-"""2부 1장: @tool로 도구를 정의하고 bind_tools로 모델의 tool_calls를 확인한다."""
+"""2부 1장: tool 데코레이터로 정의한 도구를 확인하고 bind_tools로 모델의 tool_calls를 본다."""
 import json
 
 from shared.config import get_chat_model
@@ -15,7 +15,7 @@ def show_response(msg):
         print(f"  - {tc['name']}({args})  type={tc['type']}  id 있음={bool(tc['id'])}")
 
 
-print("=== 1. @tool이 만든 도구 ===")
+print("=== 1. tool 데코레이터가 만든 도구 ===")
 print("타입:", type(add).__name__)
 for t in ALL_TOOLS:
     print(f"- {t.name}: {t.description}")
