@@ -28,8 +28,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### 도구 호출 (TOOL)
 
-- [ ] **TOOL-01**: 독자는 `@tool`로 도구를 정의하고 `bind_tools`로 모델이 생성한 `tool_calls`를 확인하는 예제를 볼 수 있다
-- [ ] **TOOL-02**: 독자는 모델 → tool call → `ToolMessage` → 재호출 루프를 손으로 구현해 최종 답을 얻는 예제를 볼 수 있다
+- [x] **TOOL-01**: 독자는 `@tool`로 도구를 정의하고 `bind_tools`로 모델이 생성한 `tool_calls`를 확인하는 예제를 볼 수 있다
+- [x] **TOOL-02**: 독자는 모델 → tool call → `ToolMessage` → 재호출 루프를 손으로 구현해 최종 답을 얻는 예제를 볼 수 있다
 
 ### RAG
 
@@ -128,8 +128,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BASIC-03 | Phase 1 | Complete |
 | BASIC-04 | Phase 1 | Complete |
 | BASIC-05 | Phase 1 | Complete |
-| TOOL-01 | Phase 2 | Pending |
-| TOOL-02 | Phase 2 | Pending |
+| TOOL-01 | Phase 2 | Complete |
+| TOOL-02 | Phase 2 | Complete |
 | RAG-01 | Phase 3 | Pending |
 | RAG-02 | Phase 3 | Pending |
 | RAG-03 | Phase 3 | Pending |
@@ -162,4 +162,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-09-11*
-*Last updated: 2026-09-11 after Phase 1 completion (13/39 complete)*
+*Last updated: 2026-09-11 after Phase 2 completion (15/39 complete)*
