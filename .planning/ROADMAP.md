@@ -30,10 +30,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. 독자가 `.env.example`을 복사해 base_url/모델명/API 키만 바꾸면 `shared/config.py`를 경유하는 모든 예제가 자신의 환경에서 그대로 실행된다 (INFRA-03, INFRA-04)
   4. 저자가 명령 한 번으로 예제를 실행하면 `.out` 파일이 생성되고, 그 안의 API 키와 로컬 절대경로가 자동으로 마스킹되어 있다 (INFRA-05, INFRA-06)
   5. 기초 챕터(채팅 호출/스트림, 멀티턴 메시지, 프롬프트 템플릿, LCEL 체인, `function_calling` 구조화 출력) 각각이 `{{#include}}`로만 코드·출력을 불러오고 개념→코드→출력→요점 형식을 따른다 (INFRA-07, INFRA-08, BASIC-01, BASIC-02, BASIC-03, BASIC-04, BASIC-05)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md — Python 실행 인프라: examples uv 패키지 + shared/config.py + .env.example, 마스킹·누출 스캐너, warm-up 캡처 러너 (Wave 1)
+- [ ] 01-02-PLAN.md — mdBook 골격(최종 목차·소개·부록), 공개 리포 생성, Pages(workflow) 활성화, CI 첫 배포 라이브 검증 (Wave 1)
+- [ ] 01-03-PLAN.md — check_book.py 형식 게이트 + 기초 챕터 1~3(채팅 호출/스트림·.env 설정, 메시지, 프롬프트 템플릿) (Wave 2)
+- [ ] 01-04-PLAN.md — 기초 챕터 4~5(LCEL, 구조화 출력·500 에러) + 전체 형식·누출 스캔·push·라이브 검증 (Wave 3)
 
 ### Phase 2: Tool Calling
 **Goal**: 독자는 모델이 도구를 호출하고 그 결과를 받아 다시 답을 만드는 전체 루프를 손으로 구현한 예제로 이해한다.
@@ -100,7 +103,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Book Infra + Basics | 0/TBD | Not started | - |
+| 1. Book Infra + Basics | 0/4 | Planned | - |
 | 2. Tool Calling | 0/TBD | Not started | - |
 | 3. RAG | 0/TBD | Not started | - |
 | 4. LangGraph + LangSmith | 0/TBD | Not started | - |
