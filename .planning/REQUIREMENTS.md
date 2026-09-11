@@ -115,13 +115,51 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (roadmap 생성 시 채움) | | |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| INFRA-08 | Phase 1 | Pending |
+| BASIC-01 | Phase 1 | Pending |
+| BASIC-02 | Phase 1 | Pending |
+| BASIC-03 | Phase 1 | Pending |
+| BASIC-04 | Phase 1 | Pending |
+| BASIC-05 | Phase 1 | Pending |
+| TOOL-01 | Phase 2 | Pending |
+| TOOL-02 | Phase 2 | Pending |
+| RAG-01 | Phase 3 | Pending |
+| RAG-02 | Phase 3 | Pending |
+| RAG-03 | Phase 3 | Pending |
+| RAG-04 | Phase 3 | Pending |
+| GRAPH-01 | Phase 4 | Pending |
+| GRAPH-02 | Phase 4 | Pending |
+| GRAPH-03 | Phase 4 | Pending |
+| GRAPH-04 | Phase 4 | Pending |
+| GRAPH-05 | Phase 4 | Pending |
+| GRAPH-06 | Phase 4 | Pending |
+| TRACE-01 | Phase 4 | Pending |
+| TRACE-02 | Phase 4 | Pending |
+| TRACE-03 | Phase 4 | Pending |
+| AGENT-01 | Phase 5 | Pending |
+| AGENT-02 | Phase 5 | Pending |
+| AGENT-03 | Phase 5 | Pending |
+| AGENT-04 | Phase 5 | Pending |
+| AGENT-05 | Phase 5 | Pending |
+| AGENT-06 | Phase 5 | Pending |
+| AGENT-07 | Phase 5 | Pending |
+| AGENT-08 | Phase 5 | Pending |
+| APPX-01 | Phase 5 | Pending |
+| APPX-02 | Phase 5 | Pending |
+| APPX-03 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 39 total
-- Mapped to phases: 0
-- Unmapped: 39 ⚠️
+- Mapped to phases: 39
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-09-11*
-*Last updated: 2026-09-11 after initial definition*
+*Last updated: 2026-09-11 after roadmap creation (5 phases, 100% coverage)*
