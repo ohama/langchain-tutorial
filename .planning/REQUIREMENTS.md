@@ -33,10 +33,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### RAG
 
-- [ ] **RAG-01**: 독자는 한국어 텍스트/마크다운 문서를 `Document`로 읽고 `RecursiveCharacterTextSplitter`로 분할하는 예제를 볼 수 있다
-- [ ] **RAG-02**: 독자는 `bge-m3` 로컬 임베딩(MPS)으로 문서를 임베딩하는 예제를 볼 수 있다
-- [ ] **RAG-03**: 독자는 Chroma에 저장한 뒤 한국어 질의로 관련 문서를 검색하는 예제를 볼 수 있다
-- [ ] **RAG-04**: 독자는 검색 결과를 프롬프트에 주입해 LCEL RAG 체인으로 답변을 생성하는 예제를 볼 수 있다
+- [x] **RAG-01**: 독자는 한국어 텍스트/마크다운 문서를 `Document`로 읽고 `RecursiveCharacterTextSplitter`로 분할하는 예제를 볼 수 있다
+- [x] **RAG-02**: 독자는 `bge-m3` 로컬 임베딩(MPS)으로 문서를 임베딩하는 예제를 볼 수 있다
+- [x] **RAG-03**: 독자는 Chroma에 저장한 뒤 한국어 질의로 관련 문서를 검색하는 예제를 볼 수 있다
+- [x] **RAG-04**: 독자는 검색 결과를 프롬프트에 주입해 LCEL RAG 체인으로 답변을 생성하는 예제를 볼 수 있다
 
 ### LangGraph (GRAPH)
 
@@ -130,10 +130,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BASIC-05 | Phase 1 | Complete |
 | TOOL-01 | Phase 2 | Complete |
 | TOOL-02 | Phase 2 | Complete |
-| RAG-01 | Phase 3 | Pending |
-| RAG-02 | Phase 3 | Pending |
-| RAG-03 | Phase 3 | Pending |
-| RAG-04 | Phase 3 | Pending |
+| RAG-01 | Phase 3 | Complete |
+| RAG-02 | Phase 3 | Complete |
+| RAG-03 | Phase 3 | Complete |
+| RAG-04 | Phase 3 | Complete |
 | GRAPH-01 | Phase 4 | Pending |
 | GRAPH-02 | Phase 4 | Pending |
 | GRAPH-03 | Phase 4 | Pending |
@@ -162,4 +162,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-09-11*
-*Last updated: 2026-09-11 after Phase 2 completion (15/39 complete)*
+*Last updated: 2026-09-11 after Phase 3 completion (19/39 complete)*
