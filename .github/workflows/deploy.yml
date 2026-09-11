@@ -1,0 +1,52 @@
+name: Deploy mdBook to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MDBOOK_VERSION: "0.5.3" # 로컬 mdbook과 같은 버전으로 고정
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install mdBook (pinned)
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/mdbook"
+          curl -sSfL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C "$RUNNER_TEMP/mdbook"
+          echo "$RUNNER_TEMP/mdbook" >> "$GITHUB_PATH"
+      - name: Build book (예제 실행·LLM 호출 없음, 커밋된 outputs만 include)
+        shell: bash
+        run: |
+          mdbook build book 2>&1 | tee "$RUNNER_TEMP/mdbook-build.log"
+          if grep -q "ERROR" "$RUNNER_TEMP/mdbook-build.log"; then
+            echo "mdBook reported errors (e.g. missing include target)" >&2
+            exit 1
+          fi
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: book/book
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
