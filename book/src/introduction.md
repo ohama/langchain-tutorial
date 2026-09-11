@@ -33,4 +33,4 @@
 
 ## 앞으로의 여정
 
-기초 → [도구 호출](ch02_tools/01_define_tools.md) → RAG → LangGraph·LangSmith → 코딩 에이전트 순서로 나아간다.
+기초 → [도구 호출](ch02_tools/01_define_tools.md) → [RAG](ch03_rag/01_load_split.md) → LangGraph·LangSmith → 코딩 에이전트 순서로 나아간다.
