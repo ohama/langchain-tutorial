@@ -1,0 +1,21 @@
+[book]
+title = "LangChain 튜토리얼 (한국어)"
+authors = ["ohama"]
+description = "로컬 LLM으로 직접 실행하며 배우는 LangChain·LangGraph, 그리고 코딩 에이전트 만들기"
+language = "ko"
+src = "src"
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+site-url = "/langchain-tutorial/"
+git-repository-url = "https://github.com/ohama/langchain-tutorial"
+edit-url-template = "https://github.com/ohama/langchain-tutorial/edit/main/book/{path}"
+default-theme = "light"
+preferred-dark-theme = "navy"
+
+[output.html.search]
+enable = true
+limit-results = 20
