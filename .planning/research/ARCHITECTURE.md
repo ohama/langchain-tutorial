@@ -10,13 +10,13 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                    LOCAL DEV MACHINE (macOS, M4 Max)                  │
+│                    LOCAL DEV MACHINE (macOS, Apple Silicon)            │
 │                                                                        │
 │  ┌───────────────────┐        ┌───────────────────────────────────┐  │
 │  │  examples/ (uv     │  run   │  Local LLM stack (already running) │  │
 │  │  package)          │───────▶│  LiteLLM proxy :4000 (flashnext)   │  │
-│  │  ch02_basics/*.py  │        │   → MLX server :8000 (Qwen3.8)     │  │
-│  │  ch03_tools/*.py   │◀───────│   → embeddings :8000 (bge / 다국어) │  │
+│  │  ch02_basics/*.py  │        │   → MLX server (Qwen3.8)           │  │
+│  │  ch03_tools/*.py   │◀───────│   → embeddings (bge / 다국어)       │  │
 │  │  ch04_rag/*.py     │  resp  └───────────────────────────────────┘  │
 │  │  ch05_langgraph/*  │                                               │
 │  │  ch06_langsmith/*  │        ┌───────────────────────────────────┐  │
@@ -342,7 +342,7 @@ CLI가 스트리밍 토큰/도구 이벤트를 실시간 출력
 | Service | Integration Pattern | Notes |
 |---------|---------------------|-------|
 | LiteLLM 프록시 (`http://127.0.0.1:4000/v1`, 모델 별칭 `flashnext`) | `langchain_openai.ChatOpenAI(base_url=..., api_key=..., model="flashnext")` | OpenAI 호환이므로 `langchain-ollama` 불필요. `base_url`/`model`/`api_key`는 반드시 `shared/config.py` 경유 |
-| MLX 임베딩 서버 (`:8000`/`:8011`) | `langchain_openai.OpenAIEmbeddings(base_url=..., model=...)` 또는 다국어 임베딩 모델을 별도 추가해 사용 | 기존 `bge-small-en-v1.5`는 영어 전용 — RAG 챕터는 다국어 임베딩 모델 로컬 추가가 선행 조건(부록 또는 RAG 챕터 준비 단계에서 다룸) |
+| MLX 임베딩 서버 | `langchain_openai.OpenAIEmbeddings(base_url=..., model=...)` 또는 다국어 임베딩 모델을 별도 추가해 사용 | 기존 `bge-small-en-v1.5`는 영어 전용 — RAG 챕터는 다국어 임베딩 모델 로컬 추가가 선행 조건(부록 또는 RAG 챕터 준비 단계에서 다룸) |
 | LangSmith (선택적, 클라우드) | `LANGSMITH_TRACING=true` + `LANGSMITH_API_KEY`를 해당 챕터의 예제에서만 설정 | 트레이싱 데이터가 외부로 전송되므로 다른 챕터에서는 절대 기본 활성화하지 않음. `.env`에 별도 키로 분리해 챕터 밖에서는 로드되지 않게 함 |
 | GitHub Pages | `actions/deploy-pages@v5` | 저장소 Settings → Pages → Source를 "GitHub Actions"로 설정해야 함(공식 starter workflow 전제조건) |
 

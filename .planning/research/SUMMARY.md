@@ -17,7 +17,7 @@
 
 ### Recommended Stack
 
-Python 3.14.7과 uv를 그대로 사용하고, LangChain 1.0 재설계 이후 표준인 `langchain 1.4.0` + `langchain-core 1.6.2` + `langgraph 1.2.11`을 채택한다. 이 조합은 이 세션에서 실제로 설치·임포트·호출까지 확인되었다(빌드 실패 0건). RAG 스택은 `langchain-chroma`(벡터스토어) + `langchain-huggingface`(`HuggingFaceEmbeddings`) + `BAAI/bge-m3`(다국어 임베딩, M4 Max MPS에서 로드·인코딩 검증)로 구성하고, 첫 RAG 예제는 설치가 필요 없는 `langchain_core.vectorstores.InMemoryVectorStore`로 개념만 보여준 뒤 Chroma로 전환하는 서사를 권장한다. 문서 로더는 `langchain-community`(2026-06 archive됨) 대신 `pathlib.Path.read_text()` + `Document`로 직접 구성한다.
+Python 3.14.7과 uv를 그대로 사용하고, LangChain 1.0 재설계 이후 표준인 `langchain 1.4.0` + `langchain-core 1.6.2` + `langgraph 1.2.11`을 채택한다. 이 조합은 이 세션에서 실제로 설치·임포트·호출까지 확인되었다(빌드 실패 0건). RAG 스택은 `langchain-chroma`(벡터스토어) + `langchain-huggingface`(`HuggingFaceEmbeddings`) + `BAAI/bge-m3`(다국어 임베딩, Apple Silicon MPS에서 로드·인코딩 검증)로 구성하고, 첫 RAG 예제는 설치가 필요 없는 `langchain_core.vectorstores.InMemoryVectorStore`로 개념만 보여준 뒤 Chroma로 전환하는 서사를 권장한다. 문서 로더는 `langchain-community`(2026-06 archive됨) 대신 `pathlib.Path.read_text()` + `Document`로 직접 구성한다.
 
 **Core technologies:**
 - `langchain 1.4.0` / `langchain-core 1.6.2`: 최상위 편의 API·메시지·Runnable — `create_agent`가 이 버전대의 표준 에이전트 생성자

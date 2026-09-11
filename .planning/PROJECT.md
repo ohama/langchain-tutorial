@@ -43,11 +43,11 @@ LangChain을 기초부터 LangGraph 에이전트까지 차근차근 익히며 �
 ## Context
 
 **로컬 LLM 환경 (2026-09-11 확인):**
-- 하드웨어: Apple M4 Max, RAM 128GB
+- 하드웨어: Apple Silicon Mac (대용량 통합 메모리)
 - LiteLLM 프록시 `http://127.0.0.1:4000/v1` (API 키 필요, 환경변수 `LITELLM_API_KEY`) — 모델 별칭: `flashnext`, `flashnext-codex`, `flashnext-plan`, `flashnext-act`, `flashnext-reach-xhigh`
-- 그 뒤의 MLX OpenAI 호환 서버 `http://127.0.0.1:8000/v1` (및 `:8011`) — `Qwen3.8-Flash-Next-MLX-oQ4`, `BAAI/bge-small-en-v1.5`
+- 그 뒤의 MLX OpenAI 호환 서버 (LiteLLM 백엔드, 포트 비공개) — `Qwen3.8-Flash-Next-MLX-oQ4`, `BAAI/bge-small-en-v1.5`
 - Ollama는 설치되어 있지 않음 → 코드는 `langchain-ollama`가 아니라 OpenAI 호환 클라이언트(`langchain-openai`의 `ChatOpenAI(base_url=...)`) 기준
-- 도구 호출 확인 완료: `:8000`에서 `get_weather(city="Seoul")`를 정확히 호출, 생성 속도 약 42 tok/s
+- 도구 호출 확인 완료: 백엔드 MLX 서버에서 `get_weather(city="Seoul")`를 정확히 호출, 생성 속도 약 42 tok/s
 - 첫 요청에서 프롬프트 273토큰 처리에 약 63초 (캐시 콜드 추정) — 예제 실행 시간에 영향이 있을 수 있음
 - 기존 임베딩 `bge-small-en-v1.5`는 영어 전용 → RAG는 다국어 임베딩 모델을 로컬에 추가해서 사용
 

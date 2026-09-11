@@ -69,7 +69,7 @@ None yet.
 ### Blockers/Concerns
 
 - Phase 5: 샌드박스 보안 하드닝(symlink 실경로 검증, 셸 명령 안전장치)은 설계 방향만 있고 구체 구현·침투 테스트 시나리오가 없음 — plan-phase 5에서 반드시 구체화할 것
-- `.planning/`이 공개 저장소에 푸시됨 (commit_docs: true). 키는 없지만 로컬 포트·모델 경로·하드웨어 정보가 공개됨 — 사용자에게 알림, 비공개로 바꿀지 결정 대기
+- `.planning/`은 공개 저장소에 계속 커밋함 (사용자 결정: "민감 정보만 정리"). 이메일·홈 절대경로·스크래치 경로·하드웨어 사양·백엔드 포트를 일반 표현으로 치환 완료. 이후 문서 작성 시에도 이런 값은 `~`, `<repo>`, `<scratchpad>`, "Apple Silicon" 등으로 적을 것. 과거 git 히스토리에는 원래 값이 남아 있음 (히스토리 재작성은 하지 않음)
 - `book/src/appendix/about.md` 부록 목록은 "(준비 중)" — Phase 5에서 채움
 
 ## Session Continuity

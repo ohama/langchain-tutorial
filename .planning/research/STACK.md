@@ -2,7 +2,7 @@
 
 **Domain:** 실행 가능한 예제를 포함하는 mdBook 기반 한국어 LangChain/LangGraph 튜토리얼 (로컬 LiteLLM 엔드포인트, Apple Silicon)
 **Researched:** 2026-09-11
-**Confidence:** HIGH — 아래 대부분의 항목은 PyPI 메타데이터 조회, 공식 문서 WebFetch, 그리고 **이 프로젝트의 실제 LiteLLM 엔드포인트(`http://127.0.0.1:4000/v1`, 모델 `flashnext`)에 대한 라이브 코드 실행**으로 직접 검증했다(이 세션에서 `uv --python 3.14`로 임시 프로젝트를 만들어 설치·임포트·호출까지 실행). langsmith/GitHub Actions 버전은 공식 릴리스 API로 확인(HIGH). Korean 임베딩 생태계 순위는 WebSearch 기반(MEDIUM)이나, 최종 추천 모델(BAAI/bge-m3)은 실제 M4 Max에서 로드·인코딩까지 실행해 성능/정확도를 확인했다(HIGH).
+**Confidence:** HIGH — 아래 대부분의 항목은 PyPI 메타데이터 조회, 공식 문서 WebFetch, 그리고 **이 프로젝트의 실제 LiteLLM 엔드포인트(`http://127.0.0.1:4000/v1`, 모델 `flashnext`)에 대한 라이브 코드 실행**으로 직접 검증했다(이 세션에서 `uv --python 3.14`로 임시 프로젝트를 만들어 설치·임포트·호출까지 실행). langsmith/GitHub Actions 버전은 공식 릴리스 API로 확인(HIGH). Korean 임베딩 생태계 순위는 WebSearch 기반(MEDIUM)이나, 최종 추천 모델(BAAI/bge-m3)은 실제 Apple Silicon에서 로드·인코딩까지 실행해 성능/정확도를 확인했다(HIGH).
 
 ## Recommended Stack
 
@@ -25,7 +25,7 @@
 | langchain-text-splitters | **1.1.2** | `RecursiveCharacterTextSplitter` | RAG 챕터의 청킹. `langchain-community`가 아니라 독립 패키지에서 임포트(`from langchain_text_splitters import RecursiveCharacterTextSplitter`) — 폐기 경로 아님, 계속 유지보수됨. |
 | langchain-huggingface | **1.2.2** | `HuggingFaceEmbeddings` — 로컬 sentence-transformers 모델 래퍼 | 다국어(한국어) 임베딩을 LangChain의 `Embeddings` 인터페이스로 노출. **라이브 검증:** `HuggingFaceEmbeddings(model_name="BAAI/bge-m3", model_kwargs={"device":"mps"}, encode_kwargs={"normalize_embeddings": True})`로 로드·쿼리 임베딩까지 정상 동작. |
 | sentence-transformers | **6.0.1** | 임베딩 모델 로딩/추론 엔진 | `langchain-huggingface`의 내부 의존성이자 단독으로도 임베딩 실험에 유용. Apple Silicon MPS 백엔드 사용 가능(`torch.backends.mps.is_available() == True` 확인). |
-| BAAI/bge-m3 (HF 모델, 라이브러리 아님) | 모델 카드 기준 최신 | 한국어 포함 다국어(100+ 언어) 임베딩 | **라이브 검증(M4 Max, MPS):** 로드 후 인코딩은 3문장 기준 0.92초로 빠름(최초 로드/다운로드에만 약 63초 소요, 이후 프로세스 내 재사용 시 즉시). 한국어-영어 동의 문장 코사인 유사도 0.83 vs 무관 문장 0.29로 명확한 판별력 확인. 1024차원, 8192 토큰 컨텍스트로 긴 한국어 문서도 처리 가능. |
+| BAAI/bge-m3 (HF 모델, 라이브러리 아님) | 모델 카드 기준 최신 | 한국어 포함 다국어(100+ 언어) 임베딩 | **라이브 검증(Apple Silicon, MPS):** 로드 후 인코딩은 3문장 기준 0.92초로 빠름(최초 로드/다운로드에만 약 63초 소요, 이후 프로세스 내 재사용 시 즉시). 한국어-영어 동의 문장 코사인 유사도 0.83 vs 무관 문장 0.29로 명확한 판별력 확인. 1024차원, 8192 토큰 컨텍스트로 긴 한국어 문서도 처리 가능. |
 | langchain-chroma | **1.1.0** | `Chroma` 벡터스토어 래퍼 | **라이브 검증:** `Chroma.from_documents(docs, embedding=..., persist_directory=...)` + `similarity_search`까지 한국어 질의로 정상 동작(정답 문서 정확히 검색됨). |
 | chromadb | **1.5.9** | Chroma의 임베디드 벡터 DB 엔진 | 서버 프로세스 불필요, 로컬 디렉터리에 영속화. `cp39-abi3` 휠이라 Python 3.14와도 호환. |
 | langgraph-checkpoint-sqlite | **3.1.1** | `SqliteSaver` — 파일 기반 영속 체크포인터 | LangGraph/캡스톤 챕터에서 "재시작해도 대화가 이어진다"를 보여줄 때. 기본은 `langgraph.checkpoint.memory.InMemorySaver`(별도 패키지 불필요, `langgraph` 코어에 포함)로 충분하며, 영속성이 필요한 순간에만 도입. |
@@ -66,7 +66,7 @@
 | Python 버전 | 3.14.7 (그대로 사용) | 3.12/3.13으로 다운그레이드 | 실제로 필요 없음 — 모든 핵심 의존성이 3.14 네이티브 휠 또는 abi3 휠을 이미 배포 중임을 직접 설치로 확인. 괜히 버전을 내리면 "최신 Python 기준"이라는 책의 신뢰성만 낮아짐. |
 | 벡터스토어 | Chroma (`langchain-chroma`) | FAISS (`faiss-cpu`) | FAISS는 순수 벡터 인덱스라 메타데이터 필터링·영속화 API가 더 저수준이라 튜토리얼 코드가 길어짐. Chroma는 `persist_directory`만 지정하면 영속화가 되고, 메타데이터 필터가 API에 내장돼 있어 RAG 개념 설명에 더 적합. FAISS는 "이런 대안도 있다" 정도로 각주 처리. |
 | 벡터스토어(입문용) | `langchain_core.vectorstores.InMemoryVectorStore` (첫 RAG 예제) | 처음부터 Chroma | 첫 RAG 개념 설명은 인프라(디스크 경로, 클라이언트 초기화) 없이 "임베딩 넣고 유사도 검색"이라는 개념만 보여주는 게 낫다. `InMemoryVectorStore`는 `langchain-core`에 이미 포함돼 있어 추가 설치가 전혀 필요 없음(라이브 확인). 이후 "영속화가 필요해지는 순간"에 Chroma로 전환하는 서사가 교육적으로 자연스럽다. |
-| 다국어 임베딩 | BAAI/bge-m3 | intfloat/multilingual-e5-small/base | e5-small(118M, 384차원)은 훨씬 가볍고 빠르지만, bge-m3(568M, 1024차원, 8192 컨텍스트)가 한국어를 포함한 다국어 검색 품질에서 현재(2026) 가장 폭넓게 검증된 오픈소스 기본값이다. 이 프로젝트는 M4 Max 128GB라는 여유가 있고 실제로 로드해본 결과 문제없이 동작했으므로 bge-m3를 기본으로 권장하되, "LLM 서버와 메모리 경쟁" 우려가 실제로 문제가 되면(PITFALLS.md 참고) e5-small로 다운그레이드하는 대안을 부록에 명시. |
+| 다국어 임베딩 | BAAI/bge-m3 | intfloat/multilingual-e5-small/base | e5-small(118M, 384차원)은 훨씬 가볍고 빠르지만, bge-m3(568M, 1024차원, 8192 컨텍스트)가 한국어를 포함한 다국어 검색 품질에서 현재(2026) 가장 폭넓게 검증된 오픈소스 기본값이다. 이 프로젝트는 대용량 메모리 Apple Silicon 머신라는 여유가 있고 실제로 로드해본 결과 문제없이 동작했으므로 bge-m3를 기본으로 권장하되, "LLM 서버와 메모리 경쟁" 우려가 실제로 문제가 되면(PITFALLS.md 참고) e5-small로 다운그레이드하는 대안을 부록에 명시. |
 | 다국어 임베딩(대안 언급) | — | Qwen3-Embedding, Kanana-Nano-2.1B-Embedding(Kakao) | Qwen3-Embedding은 성능은 좋으나 임베딩 모델치고 크고(8B 옵션은 과함, 작은 옵션도 상대적으로 무거움) 이 튜토리얼의 "가볍게 로컬에서 돌린다"는 취지와 맞지 않음. Kanana는 한국어 특화·경량이라 매력적이지만 다국어 검증 폭이 bge-m3보다 좁고, 이 프로젝트가 한국어-only가 아니라 "다국어 지원"을 요구사항으로 명시했으므로 bge-m3가 더 안전한 기본값. 둘 다 "국산/경량 대안" 각주로 언급할 가치는 있음. |
 | 에이전트 구축 방식 | 직접 `StateGraph` 구성 → `langchain.agents.create_agent`로 대비 | `langgraph.prebuilt.create_react_agent`만 사용 | `create_react_agent`(langgraph.prebuilt)는 공식 마이그레이션 가이드상 폐기 경로. 신규 표준은 `langchain.agents.create_agent`(LangGraph 런타임 기반, 미들웨어/체크포인터/구조화출력 내장). ARCHITECTURE.md/FEATURES.md와 일치. |
 | LangSmith 환경변수 | `LANGSMITH_TRACING` / `LANGSMITH_API_KEY` | `LANGCHAIN_TRACING_V2` / `LANGCHAIN_API_KEY` | 구 변수명도 계속 동작하지만(하위호환), 공식 Observability Quickstart의 1차 표기가 `LANGSMITH_*`로 바뀌었으므로 신규 자료는 신규 이름을 기준으로 삼는다. |
@@ -197,7 +197,7 @@ jobs:
 | Package A | Compatible With | Notes |
 |-----------|-----------------|-------|
 | Python 3.14.7 | langchain 1.4.0, langchain-core 1.6.2, langchain-openai 1.6.2, langgraph 1.2.11, chromadb 1.5.9, faiss-cpu 1.15.0, sentence-transformers 6.0.1, torch 2.14.0 | 전부 이 세션에서 `uv --python 3.14` 가상환경에 설치·임포트·실행 성공(빌드 실패 없음). `tokenizers`/`chromadb`/`faiss-cpu`는 abi3 휠이라 버전 무관하게 항상 호환. |
-| torch 2.14.0 (macOS arm64) | MPS 백엔드 | `torch.backends.mps.is_available() == True`를 M4 Max에서 직접 확인 — `sentence-transformers`가 `device="mps"`로 bge-m3를 문제없이 로드·추론함. |
+| torch 2.14.0 (macOS arm64) | MPS 백엔드 | `torch.backends.mps.is_available() == True`를 Apple Silicon에서 직접 확인 — `sentence-transformers`가 `device="mps"`로 bge-m3를 문제없이 로드·추론함. |
 | langchain-openai 1.6.2 `with_structured_output` | 이 프로젝트의 LiteLLM(`flashnext` 및 다른 모든 별칭) 엔드포인트 | 기본 `method="json_schema"`/`"json_mode"`/기본 strict `"function_calling"` 모두 500 에러. **`method="function_calling", strict=False`만 성공** — 반드시 이 조합으로 통일. |
 | langgraph 1.2.11 | langgraph-checkpoint 4.2.0, langgraph-checkpoint-sqlite 3.1.1 | `InMemorySaver`(코어 포함)와 `SqliteSaver`(별도 패키지) 모두 임포트 확인. |
 | langchain-huggingface 1.2.2 | sentence-transformers 6.0.1, BAAI/bge-m3 | `HuggingFaceEmbeddings` + `Chroma.from_documents` 조합으로 한국어 질의 검색까지 end-to-end 확인. |

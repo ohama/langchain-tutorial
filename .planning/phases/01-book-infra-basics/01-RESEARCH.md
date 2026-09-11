@@ -8,7 +8,7 @@
 
 ## Summary
 
-책 저작 파이프라인은 세 개의 최상위 트리(`book/`, `examples/`, `outputs/`)로 나누고, mdBook의 `{{#include}}`는 파일시스템 상대경로를 그대로 따라가므로 `book/src/` 바깥의 `examples/`·`outputs/`도 문제없이 include할 수 있음을 실측으로 확인했다(`mdbook v0.5.3`, 0.5.x의 include 동작은 0.4.x와 동일). GitHub Pages 배포는 리포지토리 자체가 아직 없으므로(`gh repo view` 404 확인, 실제 GitHub 로그인 계정은 `ohama`, 이메일 `ohama100@gmail.com`과는 다름) `gh repo create` → Pages를 `build_type: "workflow"`로 활성화(`gh api -X POST /repos/ohama/<repo>/pages`) → 공식 Actions(`checkout`/`configure-pages`/`upload-pages-artifact`/`deploy-pages`)로 배포하는 순서가 필요하다.
+책 저작 파이프라인은 세 개의 최상위 트리(`book/`, `examples/`, `outputs/`)로 나누고, mdBook의 `{{#include}}`는 파일시스템 상대경로를 그대로 따라가므로 `book/src/` 바깥의 `examples/`·`outputs/`도 문제없이 include할 수 있음을 실측으로 확인했다(`mdbook v0.5.3`, 0.5.x의 include 동작은 0.4.x와 동일). GitHub Pages 배포는 리포지토리 자체가 아직 없으므로(`gh repo view` 404 확인, 실제 GitHub 로그인 계정은 `ohama`, 이메일 `<user-email>`과는 다름) `gh repo create` → Pages를 `build_type: "workflow"`로 활성화(`gh api -X POST /repos/ohama/<repo>/pages`) → 공식 Actions(`checkout`/`configure-pages`/`upload-pages-artifact`/`deploy-pages`)로 배포하는 순서가 필요하다.
 
 `shared/config.py`를 모든 예제가 아무 실행 방식으로든 import할 수 있게 하려면 `examples/`를 `uv init`(app 템플릿) 그대로 두지 말고 `[build-system]`(hatchling) + `[tool.hatch.build.targets.wheel] packages = ["shared"]`를 추가해 **설치형 패키지**로 만들어야 한다. 이렇게 하면 `uv sync` 후 `python foo.py`를 어떤 작업 디렉토리에서 실행하든(`uv run python ch01_basics/01_chat.py`, 심지어 `.venv/bin/python`을 직접 절대경로로 호출해도) `from shared.config import ...`가 그대로 동작함을 실측으로 확인했다. `uv init` 기본값(app, `packages=[]` 없음)으로는 `python ch01_basics/01_chat.py`가 `ModuleNotFoundError: No module named 'shared'`로 실패한다 — 이것이 이 phase에서 반드시 피해야 할 실패 패턴이다.
 
@@ -152,7 +152,7 @@ packages = ["shared"]
 4. 마스킹 규칙(정규식, 순서 중요 — 구체적 패턴을 먼저 치환):
    - `os.environ["LITELLM_API_KEY"]` **실제 값** 자체를 리터럴 문자열 치환으로 `***MASKED_API_KEY***`로 바꾼다(정규식 패턴 매칭보다 우선 — 로컬 키가 `sk-`로 시작하지 않을 수도 있으므로 "값을 안다"는 사실을 활용하는 게 가장 확실).
    - 보조로 일반적인 키 패턴(`Bearer\s+\S+`, `sk-[A-Za-z0-9]{16,}`)도 정규식으로 한 번 더 스윕(다른 키 별칭/향후 클라우드 키 대비).
-   - `str(Path.home())`(즉 `/Users/ohama`) 리터럴 치환 → `~` 또는 `<HOME>`. `re.sub(re.escape(home), "~", text)`가 가장 안전(경로 구분자 이슈 없음).
+   - `str(Path.home())`(즉 `/Users/<user>`) 리터럴 치환 → `~` 또는 `<HOME>`. `re.sub(re.escape(home), "~", text)`가 가장 안전(경로 구분자 이슈 없음).
 5. 실행 시간을 stderr 또는 별도 로그에 남겨(PITFALLS.md Pitfall 4) 콜드/웜 여부를 사후에 판단 가능하게 한다.
 
 **스트리밍 캡처:** `model.stream(...)`을 쓰는 예제는 `subprocess`로 감싸 stdout을 그대로 캡처하면 청크가 이미 하나의 텍스트로 합쳐져 저장된다 — 이번 세션 실측(9개 청크, `AIMessageChunk` 누적)에서도 최종 출력은 결국 이어붙인 텍스트이므로, 캡처 방식 자체는 non-streaming과 동일하게 "표준출력 리다이렉트"로 충분하다. 다만 예제 코드 안에서 `print(chunk.content, end="", flush=True)`처럼 청크별로 출력해야 "스트리밍처럼 보이는" `.out` 파일이 만들어진다(개행 없이 이어붙는 모습을 책에 그대로 보여주는 것이 BASIC-01 요구사항의 의도).
@@ -163,7 +163,7 @@ packages = ["shared"]
 
 ### Pattern 3: GitHub 리포지토리·Pages 생성 절차 (아직 리포 없음 — 확인됨)
 
-**What:** `gh repo view ohama/langchain-tutorial`이 404를 반환 — 이 리포지토리는 아직 GitHub에 생성되지 않았다. 로그인 계정은 `ohama`(GitHub 로그인 이름)이며, `.env`/사용자 이메일(`ohama100@gmail.com`)과는 별개다. GitHub Pages 프로젝트 URL은 `https://ohama.github.io/<repo-name>/` 형태가 된다 — `book.toml`의 `output.html.site-url`을 리포 이름에 맞춰 설정해야 한다(PITFALLS.md의 site-url 이슈와 직결).
+**What:** `gh repo view ohama/langchain-tutorial`이 404를 반환 — 이 리포지토리는 아직 GitHub에 생성되지 않았다. 로그인 계정은 `ohama`(GitHub 로그인 이름)이며, `.env`/사용자 이메일과는 별개다. GitHub Pages 프로젝트 URL은 `https://ohama.github.io/<repo-name>/` 형태가 된다 — `book.toml`의 `output.html.site-url`을 리포 이름에 맞춰 설정해야 한다(PITFALLS.md의 site-url 이슈와 직결).
 
 **절차:**
 1. `gh repo create <repo-name> --public --source=. --remote=origin` (또는 먼저 `git remote add`로 기존 로컬 git과 연결) — **사용자 확인 필요 항목**(리포 이름 결정은 저자의 선택).
@@ -369,7 +369,7 @@ gh api -X POST /repos/ohama/<repo-name>/pages \
 ## Open Questions
 
 1. **리포지토리 이름/공개 여부**
-   - What we know: GitHub 로그인 계정은 `ohama`, 리포는 아직 생성 안 됨. `.env`의 이메일(`ohama100@gmail.com`)과 GitHub 로그인명은 다름.
+   - What we know: GitHub 로그인 계정은 `ohama`, 리포는 아직 생성 안 됨. `.env`의 이메일과 GitHub 로그인명은 다름.
    - What's unclear: 정확한 리포 이름(`langchain-tutorial`로 가정했지만 확정 아님), public/private 여부(Pages 무료 티어는 public 리포 또는 GitHub Pro 필요 — public 가정).
    - Recommendation: 플랜 단계에서 `gh repo create <name> --public`을 실행하기 직전에 사용자 확인 체크포인트를 둘 것. `book.toml`의 `site-url`은 이 이름이 정해진 뒤에만 정확히 채울 수 있음.
 
@@ -391,7 +391,7 @@ gh api -X POST /repos/ohama/<repo-name>/pages \
 ## Sources
 
 ### Primary (HIGH confidence)
-- 이 세션의 라이브 실행 검증 (2026-09-11, `/private/tmp/.../scratchpad/lc_test`, `/private/tmp/.../scratchpad/mdbook_test`, `/private/tmp/.../scratchpad/import_test`): mdBook 0.5.3 `{{#include}}` 상대경로 실측(`../../../` 통과), `uv init` 기본 템플릿 vs hatchling 패키지화 import 동작 비교, `ChatOpenAI` invoke/multi-turn/few-shot/RunnableParallel/batch/stream/temperature=0 재현성/`with_structured_output(function_calling, strict=False)`/reasoning 누출 여부 전체 재검증
+- 이 세션의 라이브 실행 검증 (2026-09-11, `<scratchpad>/lc_test`, `<scratchpad>/mdbook_test`, `<scratchpad>/import_test`): mdBook 0.5.3 `{{#include}}` 상대경로 실측(`../../../` 통과), `uv init` 기본 템플릿 vs hatchling 패키지화 import 동작 비교, `ChatOpenAI` invoke/multi-turn/few-shot/RunnableParallel/batch/stream/temperature=0 재현성/`with_structured_output(function_calling, strict=False)`/reasoning 누출 여부 전체 재검증
 - `mdbook --version`(v0.5.3), `mdbook test --help`(Rust 전용 확인), `mdbook build --help`(기본 build-dir `./book` 확인) — 로컬 바이너리 직접 실행
 - `gh api`, `gh repo view`, `gh auth status` 직접 실행 (2026-09-11): 리포 미생성 확인, 로그인 계정 `ohama` 확인, Pages 엔드포인트 스키마 확인
 - [GitHub REST API: Create a GitHub Pages site](https://docs.github.com/en/rest/pages/pages#create-a-github-pages-site) — `build_type: "workflow"` 페이로드 확인 (WebFetch, 2026-09-11)
