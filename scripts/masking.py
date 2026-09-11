@@ -15,8 +15,8 @@ HOME_MASK = "~"
 
 _SK_TOKEN_RE = re.compile(r"\bsk-[A-Za-z0-9_\-]{8,}")
 _BEARER_TOKEN_RE = re.compile(r"(?i)\b(Bearer\s+)[A-Za-z0-9._~+/\-]{8,}=*")
-_USERS_PATH_RE = re.compile(r"/Users/[^/\s\"'<>]+")
-_HOME_DIR_PATH_RE = re.compile(r"/home/[^/\s\"'<>]+")
+_USERS_PATH_RE = re.compile(r"/Users/[A-Za-z0-9_][^/\s\"'<>]*")
+_HOME_DIR_PATH_RE = re.compile(r"/home/[A-Za-z0-9_][^/\s\"'<>]*")
 
 
 def collect_secrets(extra: tuple[str, ...] | list[str] = ()) -> list[str]:
