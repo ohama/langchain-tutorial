@@ -1,0 +1,19 @@
+# source-sha256: 3ec9704e0a18f368fcdee7a37e4b7974cb4d7a5cc8de6d933da4f10232459eb9
+=== 1. function_calling 방식 (이 책의 규약) ===
+타입: Person
+repr: Person(name='김철수', age=30, hobbies=['등산', '사진 찍기'])
+나이 + 1: 31
+{
+  "name": "김철수",
+  "age": 30,
+  "hobbies": [
+    "등산",
+    "사진 찍기"
+  ]
+}
+
+repr: Person(name='이영희', age=27, hobbies=['요리'])
+
+=== 2. 기본값(json_schema)으로 호출하면? ===
+실패: OpenAIAPIError
+status_code=500

@@ -46,7 +46,7 @@ def get_chat_model(**overrides) -> ChatOpenAI:
 
 # ANCHOR: structured
 def get_structured_model(schema, **overrides):
-    # 로컬 서버는 기본값(json_schema)에서 500 에러 → function_calling + strict=False로 통일
+    # 로컬 서버는 기본 방식(스키마 강제 디코딩)에서 500 에러 → function_calling + strict=False로 통일
     return get_chat_model(**overrides).with_structured_output(
         schema, method="function_calling", strict=False
     )
