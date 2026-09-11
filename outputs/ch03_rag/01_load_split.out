@@ -1,0 +1,45 @@
+# source-sha256: 68cba809b30e1e8f91bf1c3f29a6d569a1d127819db5fc526aab94fac7958db8
+=== 1. 문서 로딩 ===
+문서 3개 (타입: Document)
+- examples/data/ch03_rag/01_langchain_intro.md  글자 수=1290
+- examples/data/ch03_rag/02_rag_guide.md  글자 수=1211
+- examples/data/ch03_rag/03_company_handbook.md  글자 수=1105
+첫 문서 metadata: {'source': 'examples/data/ch03_rag/01_langchain_intro.md'}
+
+=== 2. RecursiveCharacterTextSplitter로 분할 ===
+chunk_size=300, chunk_overlap=50
+문서 3개 -> 청크 17개
+[ 0] 01_langchain_intro.md start_index=0 길이=204 | '# LangChain 핵심 개념 노트\n\n## LangC'
+[ 1] 01_langchain_intro.md start_index=206 길이=294 | 'LangChain의 거의 모든 구성 요소는 Runnab'
+[ 2] 01_langchain_intro.md start_index=451 길이=56 | '단위로 즉시 받는 방식입니다. 이 세 방법은 프롬프트 '
+[ 3] 01_langchain_intro.md start_index=509 길이=19 | '## 파이프 연산자로 단계 연결하기'
+[ 4] 01_langchain_intro.md start_index=530 길이=287 | '여러 Runnable을 순서대로 실행해야 할 때는 파이'
+[ 5] 01_langchain_intro.md start_index=819 길이=265 | '## 프롬프트 템플릿과 출력 파서\n\n프롬프트 템플릿은 '
+[ 6] 01_langchain_intro.md start_index=1070 길이=219 | '## 도구를 요청하는 모델\n\n일부 상황에서는 모델이 스'
+[ 7] 02_rag_guide.md start_index=0 길이=295 | '# RAG 개념 안내\n\n## RAG란 무엇이고 왜 필요'
+[ 8] 02_rag_guide.md start_index=287 길이=245 | '## 전체 단계\n\n전체 과정은 몇 단계로 나눌 수 있습'
+[ 9] 02_rag_guide.md start_index=516 길이=263 | '## 조각 크기를 정하는 문제\n\n조각을 얼마나 크게 나'
+[10] 02_rag_guide.md start_index=762 길이=231 | '## 조각을 겹치게 나누는 이유\n\n조각과 조각 사이에 '
+[11] 02_rag_guide.md start_index=981 길이=229 | '## 임베딩이 하는 일\n\n임베딩은 글을 숫자로 이루어진'
+[12] 03_company_handbook.md start_index=0 길이=172 | '# 가상 회사 근무 규정\n\n## 안내\n\n이 문서는 이 '
+[13] 03_company_handbook.md start_index=164 길이=279 | '## 연차 휴가\n\n입사 첫해에는 한 달을 개근할 때마다'
+[14] 03_company_handbook.md start_index=436 길이=236 | '## 재택근무\n\n재택근무는 한 주에 최대 2일까지 할 '
+[15] 03_company_handbook.md start_index=664 길이=239 | '## 교육 지원\n\n회사는 한 사람당 연간 100만 원 '
+[16] 03_company_handbook.md start_index=895 길이=209 | '## 업무 장비\n\n업무용 노트북은 3년마다 새 것으로 '
+01_langchain_intro.md: 청크 7개
+02_rag_guide.md: 청크 5개
+03_company_handbook.md: 청크 5개
+
+=== 3. 청크 하나와 겹침 확인 ===
+--- 청크 0 전체 ---
+# LangChain 핵심 개념 노트
+
+## LangChain이란
+
+LangChain은 언어 모델을 활용하는 애플리케이션을 만들 때 반복적으로 필요한 구성 요소를 표준화된 인터페이스로 제공하는 프레임워크입니다. 모델 호출, 프롬프트 구성, 출력 파싱, 여러 단계를 연결하는 방법까지 하나의 일관된 방식으로 다룰 수 있게 해 줍니다.
+
+## Runnable 인터페이스
+--- 청크 1 전체 ---
+LangChain의 거의 모든 구성 요소는 Runnable이라는 공통 인터페이스를 따릅니다. Runnable은 크게 세 가지 실행 방법을 제공합니다. invoke는 입력 하나를 받아 결과 하나를 반환하는 가장 기본적인 호출 방식입니다. batch는 여러 입력을 한 번에 넘겨 각각의 결과를 리스트로 돌려받는 방식으로, 여러 건을 처리할 때 호출 오버헤드를 줄여 줍니다. stream은 결과가 완성되기를 기다리지 않고, 생성되는 대로 조각 단위로 즉시 받는 방식입니다. 이 세 방법은 프롬프트 템플릿이든 모델이든 파서든 동일하게
+청크 0 끝 위치: 204, 청크 1 시작 위치: 206
+겹친 글자 수: 0

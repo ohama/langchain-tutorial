@@ -15,6 +15,10 @@
 - [도구 정의와 bind_tools](ch02_tools/01_define_tools.md)
 - [수동 도구 실행 루프](ch02_tools/02_tool_loop.md)
 
+# 3부 RAG
+
+- [문서 로딩과 분할](ch03_rag/01_load_split.md)
+
 # 부록
 
 - [부록 안내](appendix/about.md)
