@@ -18,6 +18,7 @@
 # 3부 RAG
 
 - [문서 로딩과 분할](ch03_rag/01_load_split.md)
+- [임베딩과 벡터스토어 검색](ch03_rag/02_embed_search.md)
 
 # 부록
 

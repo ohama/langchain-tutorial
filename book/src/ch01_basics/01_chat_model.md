@@ -34,6 +34,8 @@ uv sync
 - `LLM_MODEL` — 사용할 모델 이름(별칭).
 - `LLM_API_KEY` — 인증이 필요 없는 로컬 서버라면 비워 둔다. 셸 환경변수를 참조하려면 `LLM_API_KEY=${MY_KEY_ENV}`처럼 쓸 수 있다.
 
+파일 끝의 `EMBEDDING_MODEL`/`EMBEDDING_DEVICE`는 [3부 RAG](../ch03_rag/02_embed_search.md)에서 쓰는 선택 설정이라 지금은 그대로 두면 된다.
+
 ### 설정을 읽는 곳: shared/config.py
 
 이 책의 모든 예제는 채팅 모델을 오직 이 파일을 통해서만 만든다.
