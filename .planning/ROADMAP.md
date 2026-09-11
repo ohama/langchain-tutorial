@@ -45,10 +45,10 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. `@tool`로 정의한 도구와 `bind_tools`로 모델이 만든 `tool_calls`가 실제 출력에서 확인된다 (TOOL-01)
   2. 모델→tool call→`ToolMessage`→재호출 루프 예제가 실제로 최종 답을 만들어내는 실행 결과를 보여준다 (TOOL-02)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md — shared/tools.py(결정적 도구) + 2부 1장(도구 정의·bind_tools·tool_calls) + 2장(수동 도구 실행 루프·오류 ToolMessage·MAX_ITERS) + 재현성·형식·누출 게이트, push, 라이브 검증 (Wave 1)
 
 ### Phase 3: RAG
 **Goal**: 독자는 한국어 문서를 로딩·분할·다국어 임베딩·검색·생성으로 잇는 RAG 파이프라인 전체를 실제 출력과 함께 따라갈 수 있다.
@@ -104,7 +104,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Book Infra + Basics | 4/4 | Complete | 2026-09-11 |
-| 2. Tool Calling | 0/TBD | Not started | - |
+| 2. Tool Calling | 0/1 | Not started | - |
 | 3. RAG | 0/TBD | Not started | - |
 | 4. LangGraph + LangSmith | 0/TBD | Not started | - |
 | 5. Capstone + Appendix | 0/TBD | Not started | - |
