@@ -12,7 +12,7 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Book Infra + Basics** - 저작 파이프라인 전체(로컬 실행→캡처→`{{#include}}`→CI 빌드→Pages 배포)를 끝까지 증명하고, 그 위에서 기초 챕터를 완성한다
+- [x] **Phase 1: Book Infra + Basics** - 저작 파이프라인 전체(로컬 실행→캡처→`{{#include}}`→CI 빌드→Pages 배포)를 끝까지 증명하고, 그 위에서 기초 챕터를 완성한다
 - [ ] **Phase 2: Tool Calling** - 모델의 tool call과 수동 재호출 루프를 직접 구현한 예제로 익힌다
 - [ ] **Phase 3: RAG** - 한국어 문서를 로딩·분할·다국어 임베딩·검색·생성까지 잇는 RAG 파이프라인을 완성한다
 - [ ] **Phase 4: LangGraph + LangSmith** - 도구 루프를 상태 그래프로 재구성하고, 체크포인터로 기억시키며, 트레이싱으로 내부 동작을 들여다본다
@@ -33,10 +33,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Python 실행 인프라: examples uv 패키지 + shared/config.py + .env.example, 마스킹·누출 스캐너, warm-up 캡처 러너 (Wave 1)
-- [ ] 01-02-PLAN.md — mdBook 골격(최종 목차·소개·부록), 공개 리포 생성, Pages(workflow) 활성화, CI 첫 배포 라이브 검증 (Wave 1)
-- [ ] 01-03-PLAN.md — check_book.py 형식 게이트 + 기초 챕터 1~3(채팅 호출/스트림·.env 설정, 메시지, 프롬프트 템플릿) (Wave 2)
-- [ ] 01-04-PLAN.md — 기초 챕터 4~5(LCEL, 구조화 출력·500 에러) + 전체 형식·누출 스캔·push·라이브 검증 (Wave 3)
+- [x] 01-01-PLAN.md — Python 실행 인프라: examples uv 패키지 + shared/config.py + .env.example, 마스킹·누출 스캐너, warm-up 캡처 러너 (Wave 1)
+- [x] 01-02-PLAN.md — mdBook 골격(최종 목차·소개·부록), 공개 리포 생성, Pages(workflow) 활성화, CI 첫 배포 라이브 검증 (Wave 1)
+- [x] 01-03-PLAN.md — check_book.py 형식 게이트 + 기초 챕터 1~3(채팅 호출/스트림·.env 설정, 메시지, 프롬프트 템플릿) (Wave 2)
+- [x] 01-04-PLAN.md — 기초 챕터 4~5(LCEL, 구조화 출력·500 에러) + 전체 형식·누출 스캔·push·라이브 검증 (Wave 3)
 
 ### Phase 2: Tool Calling
 **Goal**: 독자는 모델이 도구를 호출하고 그 결과를 받아 다시 답을 만드는 전체 루프를 손으로 구현한 예제로 이해한다.
@@ -103,7 +103,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Book Infra + Basics | 0/4 | Planned | - |
+| 1. Book Infra + Basics | 4/4 | Complete | 2026-09-11 |
 | 2. Tool Calling | 0/TBD | Not started | - |
 | 3. RAG | 0/TBD | Not started | - |
 | 4. LangGraph + LangSmith | 0/TBD | Not started | - |

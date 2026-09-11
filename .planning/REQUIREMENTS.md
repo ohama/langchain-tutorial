@@ -9,22 +9,22 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### 책 인프라 (INFRA)
 
-- [ ] **INFRA-01**: 독자는 GitHub Pages URL에서 목차·챕터·부록을 갖춘 한국어 mdBook을 열어 볼 수 있다
-- [ ] **INFRA-02**: main에 push하면 GitHub Actions가 LLM 호출 없이 mdBook을 빌드해 GitHub Pages에 자동 배포한다
-- [ ] **INFRA-03**: 독자는 `.env.example`을 복사해 base_url/모델명/API 키만 바꾸면 모든 예제를 자기 LLM 환경에서 실행할 수 있다 (`.env`는 git에서 제외)
-- [ ] **INFRA-04**: 모든 예제는 `shared/config.py` 한 곳에서 채팅 모델을 생성한다 (구조화 출력은 `method="function_calling", strict=False` 규약 포함)
-- [ ] **INFRA-05**: 저자는 명령 한 번으로 챕터 예제를 warm-up 후 로컬 LLM에 대해 실행하고 출력을 `.out` 파일로 저장할 수 있다
-- [ ] **INFRA-06**: 캡처된 출력에서 API 키와 로컬 절대 경로(`/Users/...`)가 자동으로 마스킹된다
-- [ ] **INFRA-07**: 챕터는 예제 소스와 실제 출력을 `{{#include}}`로만 불러오며, 손으로 붙여넣은 코드/출력이 없다
-- [ ] **INFRA-08**: 모든 챕터가 개념(왜 필요한가) → 최소 코드 → 실제 출력 → 요점 정리 형식을 따른다
+- [x] **INFRA-01**: 독자는 GitHub Pages URL에서 목차·챕터·부록을 갖춘 한국어 mdBook을 열어 볼 수 있다
+- [x] **INFRA-02**: main에 push하면 GitHub Actions가 LLM 호출 없이 mdBook을 빌드해 GitHub Pages에 자동 배포한다
+- [x] **INFRA-03**: 독자는 `.env.example`을 복사해 base_url/모델명/API 키만 바꾸면 모든 예제를 자기 LLM 환경에서 실행할 수 있다 (`.env`는 git에서 제외)
+- [x] **INFRA-04**: 모든 예제는 `shared/config.py` 한 곳에서 채팅 모델을 생성한다 (구조화 출력은 `method="function_calling", strict=False` 규약 포함)
+- [x] **INFRA-05**: 저자는 명령 한 번으로 챕터 예제를 warm-up 후 로컬 LLM에 대해 실행하고 출력을 `.out` 파일로 저장할 수 있다
+- [x] **INFRA-06**: 캡처된 출력에서 API 키와 로컬 절대 경로(`/Users/...`)가 자동으로 마스킹된다
+- [x] **INFRA-07**: 챕터는 예제 소스와 실제 출력을 `{{#include}}`로만 불러오며, 손으로 붙여넣은 코드/출력이 없다
+- [x] **INFRA-08**: 모든 챕터가 개념(왜 필요한가) → 최소 코드 → 실제 출력 → 요점 정리 형식을 따른다
 
 ### 기초 (BASIC)
 
-- [ ] **BASIC-01**: 독자는 `ChatOpenAI(base_url=...)`로 로컬 `flashnext`를 `invoke`/`stream` 호출하는 예제와 실제 출력을 볼 수 있다
-- [ ] **BASIC-02**: 독자는 System/Human/AI 메시지로 멀티턴 대화를 이어가는 예제를 볼 수 있다
-- [ ] **BASIC-03**: 독자는 변수와 few-shot을 쓰는 `ChatPromptTemplate` 예제를 볼 수 있다
-- [ ] **BASIC-04**: 독자는 `|` 파이프, `RunnableParallel`/`RunnableLambda`, `batch`/`stream`으로 LCEL 체인을 구성하는 예제를 볼 수 있다
-- [ ] **BASIC-05**: 독자는 Pydantic 모델로 구조화 출력을 받는 예제와, speculative decoding 500 에러의 원인·해결책(`function_calling`) 설명을 볼 수 있다
+- [x] **BASIC-01**: 독자는 `ChatOpenAI(base_url=...)`로 로컬 `flashnext`를 `invoke`/`stream` 호출하는 예제와 실제 출력을 볼 수 있다
+- [x] **BASIC-02**: 독자는 System/Human/AI 메시지로 멀티턴 대화를 이어가는 예제를 볼 수 있다
+- [x] **BASIC-03**: 독자는 변수와 few-shot을 쓰는 `ChatPromptTemplate` 예제를 볼 수 있다
+- [x] **BASIC-04**: 독자는 `|` 파이프, `RunnableParallel`/`RunnableLambda`, `batch`/`stream`으로 LCEL 체인을 구성하는 예제를 볼 수 있다
+- [x] **BASIC-05**: 독자는 Pydantic 모델로 구조화 출력을 받는 예제와, speculative decoding 500 에러의 원인·해결책(`function_calling`) 설명을 볼 수 있다
 
 ### 도구 호출 (TOOL)
 
@@ -115,19 +115,19 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
-| INFRA-06 | Phase 1 | Pending |
-| INFRA-07 | Phase 1 | Pending |
-| INFRA-08 | Phase 1 | Pending |
-| BASIC-01 | Phase 1 | Pending |
-| BASIC-02 | Phase 1 | Pending |
-| BASIC-03 | Phase 1 | Pending |
-| BASIC-04 | Phase 1 | Pending |
-| BASIC-05 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
+| INFRA-06 | Phase 1 | Complete |
+| INFRA-07 | Phase 1 | Complete |
+| INFRA-08 | Phase 1 | Complete |
+| BASIC-01 | Phase 1 | Complete |
+| BASIC-02 | Phase 1 | Complete |
+| BASIC-03 | Phase 1 | Complete |
+| BASIC-04 | Phase 1 | Complete |
+| BASIC-05 | Phase 1 | Complete |
 | TOOL-01 | Phase 2 | Pending |
 | TOOL-02 | Phase 2 | Pending |
 | RAG-01 | Phase 3 | Pending |
@@ -162,4 +162,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-09-11*
-*Last updated: 2026-09-11 after roadmap creation (5 phases, 100% coverage)*
+*Last updated: 2026-09-11 after Phase 1 completion (13/39 complete)*
