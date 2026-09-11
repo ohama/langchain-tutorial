@@ -1,0 +1,22 @@
+# Secrets — never commit real credentials
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+
+# Python bytecode / caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# mdBook build output (deployed via CI, not committed)
+book/book/
+
+# Local Claude Code tooling — not part of the public book repo
+.claude/
+
+# macOS
+.DS_Store
