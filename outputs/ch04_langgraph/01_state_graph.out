@@ -1,0 +1,41 @@
+# source-sha256: 57b502851577c725d4b3f2650dbe5e2c8d148cb08920a7dff0898822fa79ea46
+=== 1. 상태(State): TypedDict + add_messages ===
+ChatState 필드: ['messages']
+MessagesState 필드: ['messages']
+MessagesState는 위 ChatState와 같은 모양을 미리 만들어 둔 것
+add_messages([1개], [1개]) -> 2개: ['HumanMessage', 'AIMessage']
+노드는 새로 생긴 메시지만 돌려주고, 리듀서가 기존 목록에 이어 붙인다
+
+=== 2. 노드와 엣지 ===
+노드: ['__end__', '__start__', 'model', 'tools']
+  __start__ -> model
+  model -> __end__  (조건부)
+  model -> tools  (조건부)
+  tools -> model
+tools -> model 루프백 있음: True
+
+=== 3. 2부 도구 루프를 그래프로 재현 ===
+질문: 사과 재고와 바나나 재고를 곱하면 몇이야? 재고 조회 후 곱셈 도구로 계산해줘.
+Human: 사과 재고와 바나나 재고를 곱하면 몇이야? 재고 조회 후 곱셈 도구로 계산해줘.
+AI: tool_calls [lookup_stock({"item": "사과"}), lookup_stock({"item": "바나나"})]
+Tool[lookup_stock] (success): 사과 재고: 12개
+Tool[lookup_stock] (success): 바나나 재고: 5개
+AI: tool_calls [multiply({"a": 12, "b": 5})]
+Tool[multiply] (success): 60
+AI: 사과 재고 12개 × 바나나 재고 5개 = **60**입니다.
+메시지 흐름: HumanMessage → AIMessage → ToolMessage → ToolMessage → AIMessage → ToolMessage → AIMessage
+최종 답: 사과 재고 12개 × 바나나 재고 5개 = **60**입니다.
+2부 수동 루프의 최종 답과 동일: True
+
+=== 4. 도구 안에서 난 예외도 ToolMessage로 ===
+Human: 노트북 재고를 확인해줘.
+AI: tool_calls [lookup_stock({"item": "노트북"})]
+Tool[lookup_stock] (error): Error: ValueError('재고 목록에 없는 품목: 노트북')
+ Please fix your mistakes.
+AI: 노트북은 현재 재고 목록에 없는 품목으로 확인됩니다.
+
+다른 품목의 재고를 확인하시거나, 재고 목록 전체를 확인해드릴까요?
+마지막 답: 노트북은 현재 재고 목록에 없는 품목으로 확인됩니다.
+
+다른 품목의 재고를 확인하시거나, 재고 목록 전체를 확인해드릴까요?
+ToolNode(ALL_TOOLS, handle_tool_errors=True)이 아니었다면 이 예외가 그래프를 죽였을 것이다
