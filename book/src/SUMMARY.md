@@ -21,6 +21,10 @@
 - [임베딩과 벡터스토어 검색](ch03_rag/02_embed_search.md)
 - [LCEL RAG 체인](ch03_rag/03_rag_chain.md)
 
+# 4부 LangGraph
+
+- [도구 루프를 그래프로 다시 만들기](ch04_langgraph/01_state_graph.md)
+
 # 부록
 
 - [부록 안내](appendix/about.md)
