@@ -1,0 +1,33 @@
+# source-sha256: b0da82ae64d167ce800d024c68b3646f3797450dd35e8d3c0d01586efd980b68
+=== 1. 트레이싱 스위치 (기본값: 꺼짐) ===
+기본값(아무 설정 없음): False
+LANGSMITH_TRACING=true: True
+API 키 없이도 스위치 자체는 켜진다: True (실제 전송에는 키가 필요하다)
+다시 끈 뒤: False
+이 함수는 환경변수만 읽고 네트워크에 접속하지 않으므로, 이 장의 어떤 출력도 클라우드로 전송되지 않았다
+
+=== 2. 그래프 내부의 호출 트리 (로컬) ===
+[1] model 시작
+[1] model 끝 → 도구 요청: lookup_stock({"item": "사과"}), lookup_stock({"item": "바나나"})
+[1] model 토큰: 입력 450 / 출력 55 / 합계 505
+[2] tools 시작
+[2] tools 끝 → lookup_stock (success): 사과 재고: 12개
+[2] tools 끝 → lookup_stock (success): 바나나 재고: 5개
+[3] model 시작
+[3] model 끝 → 도구 요청: multiply({"a": 12, "b": 5})
+[3] model 토큰: 입력 545 / 출력 37 / 합계 582
+[4] tools 시작
+[4] tools 끝 → multiply (success): 60
+[5] model 시작
+[5] model 끝 → 답변: 사과 재고 12개 × 바나나 재고 5개 = **60**입니다.
+[5] model 토큰: 입력 601 / 출력 25 / 합계 626
+
+=== 3. 트레이스 트리의 이름 = 그래프 노드 이름 ===
+그래프에 등록한 노드: ['model', 'tools']
+트레이스에서 관찰된 순서: model → tools → model → tools → model
+관찰된 이름이 모두 등록된 노드인가: True
+
+=== 4. 토큰 사용량 합계 ===
+모델 호출 3회
+입력 토큰 합계 1596 / 출력 토큰 합계 117 / 전체 합계 1713
+지연시간은 재현 가능한 값이 아니라 이 책의 캡처에는 넣지 않는다 — LangSmith UI에서는 각 단계 옆에 실제 소요 시간이 함께 표시된다
