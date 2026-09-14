@@ -24,6 +24,7 @@
 # 4부 LangGraph
 
 - [도구 루프를 그래프로 다시 만들기](ch04_langgraph/01_state_graph.md)
+- [체크포인터와 recursion_limit](ch04_langgraph/02_checkpointer.md)
 
 # 부록
 
