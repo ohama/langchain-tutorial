@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Book Infra + Basics** - 저작 파이프라인 전체(로컬 실행→캡처→`{{#include}}`→CI 빌드→Pages 배포)를 끝까지 증명하고, 그 위에서 기초 챕터를 완성한다
 - [x] **Phase 2: Tool Calling** - 모델의 tool call과 수동 재호출 루프를 직접 구현한 예제로 익힌다
 - [x] **Phase 3: RAG** - 한국어 문서를 로딩·분할·다국어 임베딩·검색·생성까지 잇는 RAG 파이프라인을 완성한다
-- [ ] **Phase 4: LangGraph + LangSmith** - 도구 루프를 상태 그래프로 재구성하고, 체크포인터로 기억시키며, 트레이싱으로 내부 동작을 들여다본다
+- [x] **Phase 4: LangGraph + LangSmith** - 도구 루프를 상태 그래프로 재구성하고, 체크포인터로 기억시키며, 트레이싱으로 내부 동작을 들여다본다
 - [ ] **Phase 5: Capstone + Appendix** - 샌드박스 코딩 에이전트를 완성하고 로컬 LLM 설치·uv 환경 부록을 마무리한다
 
 ## Phase Details
@@ -78,10 +78,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — 툴체인: langgraph·sqlite 체크포인터·langsmith 의존성, mermaid 형식 게이트와 누출 스캐너 `--exclude`, 핀 고정된 mdbook-mermaid 렌더링 파이프라인(book.toml·자산·CI) (Wave 1)
-- [ ] 04-02-PLAN.md — 4부 1장: TypedDict/add_messages 상태와 StateGraph로 2부 도구 루프 재현(최종 답 동일 여부를 출력에서 단언) + draw_mermaid 캡처를 실제 다이어그램으로 렌더링 (Wave 2)
-- [ ] 04-03-PLAN.md — 4부 2장(InMemorySaver·thread_id 기억, recursion_limit 정지) + 3장(별도 프로세스 2개가 공유하는 SqliteSaver로 재시작 생존 증명) (Wave 3)
-- [ ] 04-04-PLAN.md — 4부 4장(클라우드 전송 없는 LangSmith 트레이싱: 토글·로컬 호출 트리·토큰·노드 1:1 대응) + 포인터 + 전체 릴리스 게이트·push·라이브 검증(렌더링된 다이어그램 확인 포함) (Wave 4)
+- [x] 04-01-PLAN.md — 툴체인: langgraph·sqlite 체크포인터·langsmith 의존성, mermaid 형식 게이트와 누출 스캐너 `--exclude`, 핀 고정된 mdbook-mermaid 렌더링 파이프라인(book.toml·자산·CI) (Wave 1)
+- [x] 04-02-PLAN.md — 4부 1장: TypedDict/add_messages 상태와 StateGraph로 2부 도구 루프 재현(최종 답 동일 여부를 출력에서 단언) + draw_mermaid 캡처를 실제 다이어그램으로 렌더링 (Wave 2)
+- [x] 04-03-PLAN.md — 4부 2장(InMemorySaver·thread_id 기억, recursion_limit 정지) + 3장(별도 프로세스 2개가 공유하는 SqliteSaver로 재시작 생존 증명) (Wave 3)
+- [x] 04-04-PLAN.md — 4부 4장(클라우드 전송 없는 LangSmith 트레이싱: 토글·로컬 호출 트리·토큰·노드 1:1 대응) + 포인터 + 전체 릴리스 게이트·push·라이브 검증(렌더링된 다이어그램 확인 포함) (Wave 4)
 
 ### Phase 5: Capstone + Appendix
 **Goal**: 독자는 지정된 작업 폴더 안에서만 파일을 읽고·쓰고 셸 명령을 실행하는 코딩 에이전트를 손수 구현하고, `create_agent`/`deepagents` 버전과 비교하며, 버그를 스스로 고치는 엔드투엔드 데모를 확인한다. 마지막으로 로컬 LLM 설치와 uv 환경 구성 부록을 읽는다.
@@ -110,5 +110,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Book Infra + Basics | 4/4 | Complete | 2026-09-11 |
 | 2. Tool Calling | 1/1 | Complete | 2026-09-11 |
 | 3. RAG | 2/2 | Complete | 2026-09-11 |
-| 4. LangGraph + LangSmith | 0/4 | Planned | - |
+| 4. LangGraph + LangSmith | 4/4 | Complete | 2026-09-14 |
 | 5. Capstone + Appendix | 0/TBD | Not started | - |

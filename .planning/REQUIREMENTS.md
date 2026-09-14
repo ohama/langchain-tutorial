@@ -40,18 +40,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### LangGraph (GRAPH)
 
-- [ ] **GRAPH-01**: 독자는 `TypedDict`/`add_messages` 상태와 노드·엣지로 `StateGraph`를 만드는 예제를 볼 수 있다
-- [ ] **GRAPH-02**: 독자는 `add_conditional_edges`와 루프백 엣지로 TOOL-02의 도구 루프를 그래프로 재구성한 예제를 볼 수 있다
-- [ ] **GRAPH-03**: 독자는 `InMemorySaver` + `thread_id`로 대화를 기억하는 예제를 볼 수 있다
-- [ ] **GRAPH-04**: 독자는 `recursion_limit`으로 무한 루프를 멈추는 예제를 볼 수 있다
-- [ ] **GRAPH-05**: 독자는 챕터의 그래프 구조를 mermaid 다이어그램으로 볼 수 있다
-- [ ] **GRAPH-06**: 독자는 SQLite 체크포인터로 프로세스를 재시작해도 상태가 유지되는 예제를 볼 수 있다
+- [x] **GRAPH-01**: 독자는 `TypedDict`/`add_messages` 상태와 노드·엣지로 `StateGraph`를 만드는 예제를 볼 수 있다
+- [x] **GRAPH-02**: 독자는 `add_conditional_edges`와 루프백 엣지로 TOOL-02의 도구 루프를 그래프로 재구성한 예제를 볼 수 있다
+- [x] **GRAPH-03**: 독자는 `InMemorySaver` + `thread_id`로 대화를 기억하는 예제를 볼 수 있다
+- [x] **GRAPH-04**: 독자는 `recursion_limit`으로 무한 루프를 멈추는 예제를 볼 수 있다
+- [x] **GRAPH-05**: 독자는 챕터의 그래프 구조를 mermaid 다이어그램으로 볼 수 있다
+- [x] **GRAPH-06**: 독자는 SQLite 체크포인터로 프로세스를 재시작해도 상태가 유지되는 예제를 볼 수 있다
 
 ### LangSmith (TRACE)
 
-- [ ] **TRACE-01**: 독자는 `.env` 플래그로 LangSmith 트레이싱을 켜고 끌 수 있으며, 기본값은 꺼짐이다
-- [ ] **TRACE-02**: 독자는 트레이스에서 호출 트리, 지연시간·토큰, tool call 인자·결과를 읽는 법을 볼 수 있다
-- [ ] **TRACE-03**: 독자는 LangSmith 트레이스 트리와 LangGraph 노드의 1:1 대응 설명을 볼 수 있다
+- [x] **TRACE-01**: 독자는 `.env` 플래그로 LangSmith 트레이싱을 켜고 끌 수 있으며, 기본값은 꺼짐이다
+- [x] **TRACE-02**: 독자는 트레이스에서 호출 트리, 지연시간·토큰, tool call 인자·결과를 읽는 법을 볼 수 있다
+- [x] **TRACE-03**: 독자는 LangSmith 트레이스 트리와 LangGraph 노드의 1:1 대응 설명을 볼 수 있다
 
 ### 코딩 에이전트 캡스톤 (AGENT)
 
@@ -134,15 +134,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RAG-02 | Phase 3 | Complete |
 | RAG-03 | Phase 3 | Complete |
 | RAG-04 | Phase 3 | Complete |
-| GRAPH-01 | Phase 4 | Pending |
-| GRAPH-02 | Phase 4 | Pending |
-| GRAPH-03 | Phase 4 | Pending |
-| GRAPH-04 | Phase 4 | Pending |
-| GRAPH-05 | Phase 4 | Pending |
-| GRAPH-06 | Phase 4 | Pending |
-| TRACE-01 | Phase 4 | Pending |
-| TRACE-02 | Phase 4 | Pending |
-| TRACE-03 | Phase 4 | Pending |
+| GRAPH-01 | Phase 4 | Complete |
+| GRAPH-02 | Phase 4 | Complete |
+| GRAPH-03 | Phase 4 | Complete |
+| GRAPH-04 | Phase 4 | Complete |
+| GRAPH-05 | Phase 4 | Complete |
+| GRAPH-06 | Phase 4 | Complete |
+| TRACE-01 | Phase 4 | Complete |
+| TRACE-02 | Phase 4 | Complete |
+| TRACE-03 | Phase 4 | Complete |
 | AGENT-01 | Phase 5 | Pending |
 | AGENT-02 | Phase 5 | Pending |
 | AGENT-03 | Phase 5 | Pending |
@@ -162,4 +162,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-09-11*
-*Last updated: 2026-09-11 after Phase 3 completion (19/39 complete)*
+*Last updated: 2026-09-14 after Phase 4 completion (28/39 complete)*
