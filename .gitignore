@@ -15,6 +15,11 @@ __pycache__/
 # mdBook build output (deployed via CI, not committed)
 book/book/
 
+# LangGraph SQLite 체크포인터 데모가 만드는 임시 DB (WAL 사이드카 포함)
+examples/ch04_langgraph/*.db
+examples/ch04_langgraph/*.db-wal
+examples/ch04_langgraph/*.db-shm
+
 # Local Claude Code tooling — not part of the public book repo
 .claude/
 
