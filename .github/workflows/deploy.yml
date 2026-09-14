@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MDBOOK_VERSION: "0.5.3" # 로컬 mdbook과 같은 버전으로 고정
+      MDBOOK_MERMAID_VERSION: "0.17.0" # book.toml의 [preprocessor.mermaid]가 이 바이너리를 호출한다
     steps:
       - uses: actions/checkout@v7
       - name: Install mdBook (pinned)
@@ -28,6 +29,13 @@ jobs:
           curl -sSfL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
             | tar -xz -C "$RUNNER_TEMP/mdbook"
           echo "$RUNNER_TEMP/mdbook" >> "$GITHUB_PATH"
+      - name: Install mdbook-mermaid (pinned)
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/mdbook-mermaid"
+          curl -sSfL "https://github.com/badboy/mdbook-mermaid/releases/download/v${MDBOOK_MERMAID_VERSION}/mdbook-mermaid-v${MDBOOK_MERMAID_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C "$RUNNER_TEMP/mdbook-mermaid"
+          echo "$RUNNER_TEMP/mdbook-mermaid" >> "$GITHUB_PATH"
       - name: Build book (예제 실행·LLM 호출 없음, 커밋된 outputs만 include)
         shell: bash
         run: |
