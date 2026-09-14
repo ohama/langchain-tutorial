@@ -75,10 +75,13 @@ Plans:
   3. `InMemorySaver` + `thread_id`로 같은 스레드의 대화가 이어지는 실행 결과와, `recursion_limit`으로 무한 루프가 멈추는 실행 결과를 각각 볼 수 있다 (GRAPH-03, GRAPH-04)
   4. SQLite 체크포인터 예제는 프로세스를 재시작해도 이전 상태가 유지됨을 실제 실행 결과로 보여준다 (GRAPH-06)
   5. `.env` 플래그로 LangSmith를 켜면(기본값 꺼짐) 트레이스에서 호출 트리·지연시간/토큰·tool call 인자/결과를 확인할 수 있고, 트레이스 트리와 그래프 노드의 1:1 대응 설명을 볼 수 있다 (TRACE-01, TRACE-02, TRACE-03)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md — 툴체인: langgraph·sqlite 체크포인터·langsmith 의존성, mermaid 형식 게이트와 누출 스캐너 `--exclude`, 핀 고정된 mdbook-mermaid 렌더링 파이프라인(book.toml·자산·CI) (Wave 1)
+- [ ] 04-02-PLAN.md — 4부 1장: TypedDict/add_messages 상태와 StateGraph로 2부 도구 루프 재현(최종 답 동일 여부를 출력에서 단언) + draw_mermaid 캡처를 실제 다이어그램으로 렌더링 (Wave 2)
+- [ ] 04-03-PLAN.md — 4부 2장(InMemorySaver·thread_id 기억, recursion_limit 정지) + 3장(별도 프로세스 2개가 공유하는 SqliteSaver로 재시작 생존 증명) (Wave 3)
+- [ ] 04-04-PLAN.md — 4부 4장(클라우드 전송 없는 LangSmith 트레이싱: 토글·로컬 호출 트리·토큰·노드 1:1 대응) + 포인터 + 전체 릴리스 게이트·push·라이브 검증(렌더링된 다이어그램 확인 포함) (Wave 4)
 
 ### Phase 5: Capstone + Appendix
 **Goal**: 독자는 지정된 작업 폴더 안에서만 파일을 읽고·쓰고 셸 명령을 실행하는 코딩 에이전트를 손수 구현하고, `create_agent`/`deepagents` 버전과 비교하며, 버그를 스스로 고치는 엔드투엔드 데모를 확인한다. 마지막으로 로컬 LLM 설치와 uv 환경 구성 부록을 읽는다.
@@ -107,5 +110,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Book Infra + Basics | 4/4 | Complete | 2026-09-11 |
 | 2. Tool Calling | 1/1 | Complete | 2026-09-11 |
 | 3. RAG | 2/2 | Complete | 2026-09-11 |
-| 4. LangGraph + LangSmith | 0/TBD | Not started | - |
+| 4. LangGraph + LangSmith | 0/4 | Planned | - |
 | 5. Capstone + Appendix | 0/TBD | Not started | - |
