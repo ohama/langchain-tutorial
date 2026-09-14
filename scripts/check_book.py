@@ -28,7 +28,7 @@ LINK_RE = re.compile(r"\]\(([^)]+)\)")
 
 STUB_MARKER = "이 장은 작성 중입니다"
 
-INCLUDE_ONLY_LANGS = ("python", "text", "ini")
+INCLUDE_ONLY_LANGS = ("python", "text", "ini", "mermaid")
 
 
 class CheckError(Exception):

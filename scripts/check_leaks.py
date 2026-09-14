@@ -10,6 +10,7 @@ PATH는 파일, 디렉터리(재귀적으로 순회, .git/.venv/__pycache__/node
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import sys
 from pathlib import Path
 
@@ -19,6 +20,18 @@ from masking import collect_secrets, find_leaks, mask_text  # noqa: E402
 
 SKIP_DIRS = {".git", ".venv", "__pycache__", "node_modules"}
 MAX_BYTES = 20 * 1024 * 1024  # 20 MB
+
+
+def _is_excluded(path: Path, patterns: list[str], cwd: Path) -> bool:
+    """경로가 --exclude 글롭 중 하나와 맞으면 True. 벤더링된 외부 자산 전용."""
+    if not patterns:
+        return False
+    candidates = {str(path), path.as_posix()}
+    try:
+        candidates.add(path.resolve().relative_to(cwd).as_posix())
+    except (ValueError, OSError):
+        pass
+    return any(fnmatch.fnmatch(c, pat) for c in candidates for pat in patterns)
 
 
 def _load_secrets() -> list[str]:
@@ -76,6 +89,9 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description="Scan files/dirs/stdin for secret leaks.")
     parser.add_argument("--secrets-only", action="store_true",
                          help="Only report literal-secret findings (for tracked docs/history).")
+    parser.add_argument("--exclude", action="append", default=[], metavar="GLOB",
+                        help="Skip files whose path matches GLOB (repeatable). "
+                             "Intended for vendored third-party assets, never for project content.")
     parser.add_argument("paths", nargs="+", metavar="PATH")
     args = parser.parse_args(argv)
 
@@ -93,6 +109,8 @@ def main(argv=None) -> int:
 
         p = Path(raw_path)
         for file_path in _iter_files(p):
+            if _is_excluded(file_path, args.exclude, cwd):
+                continue
             text = _read_text(file_path)
             if text is None:
                 continue
